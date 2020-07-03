@@ -1,0 +1,31 @@
+{
+  "name": "full-stack-open-2020-part4",
+  "version": "1.0.0",
+  "description": "I will be completing exercises from full stack open 2020 (https://fullstackopen.com/en/). The repository hosts exercises from the following parts:  * (Part 4) Testing Express servers, user administration, https://fullstackopen.com/en/part4",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.21",
+    "save": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linhenry/full-stack-open-2020-part4.git"
+  },
+  "author": "Henry Lin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linhenry/full-stack-open-2020-part4/issues"
+  },
+  "homepage": "https://github.com/linhenry/full-stack-open-2020-part4#readme"
+}
