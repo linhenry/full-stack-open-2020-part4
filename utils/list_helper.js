@@ -48,12 +48,38 @@ const mostBlogs = (blogs) => {
 /* The function returns the author, whose blog posts have the largest amount of likes
 The return value also contains the total number of likes that the author has received: */
 const mostLikes = (blogs) => {
+  const authorLikes = []
+  blogs.forEach(blog => {
+    if (authorLikes[blog.author] === undefined) {
+      authorLikes[blog.author] = blog.likes
+    } else {
+      authorLikes[blog.author] += blog.likes
+    }
+  })
 
+  let max = 0
+  const mostLikes = {
+    "author": "none",
+    "likes": 0
+  }
+
+  // key is name of author
+  // authorLikes[key] is number of likes
+  for (const key in authorLikes) {
+    if (authorLikes[key] > max) {
+      max = authorLikes[key]
+      mostLikes.author = key
+      mostLikes.likes = authorLikes[key]
+    }
+  }
+
+  return mostLikes
 }
 
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes
 }
