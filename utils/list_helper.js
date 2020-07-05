@@ -8,8 +8,6 @@ const totalLikes = (blogs) => {
   }, 0)
 }
 
-/* The function returns the author who has the largest amount of blogs
-The return value also contains the number of blogs the top author has */
 const favoriteBlog = (blogs) => {
   return blogs.reduce((favorite, blog) => {
     return (favorite.likes >= blog.likes ? favorite : blog)
@@ -32,8 +30,6 @@ const mostBlogs = (blogs) => {
     "blogs": 0
   }
 
-  // key is name of author
-  // blogsByAuthor[key] is number of blogs
   for (const key in blogsByAuthor) {
     if (blogsByAuthor[key] > max) {
       max = blogsByAuthor[key]
@@ -45,8 +41,6 @@ const mostBlogs = (blogs) => {
   return mostBlogs
 }
 
-/* The function returns the author, whose blog posts have the largest amount of likes
-The return value also contains the total number of likes that the author has received: */
 const mostLikes = (blogs) => {
   const authorLikes = []
   blogs.forEach(blog => {
@@ -63,8 +57,6 @@ const mostLikes = (blogs) => {
     "likes": 0
   }
 
-  // key is name of author
-  // authorLikes[key] is number of likes
   for (const key in authorLikes) {
     if (authorLikes[key] > max) {
       max = authorLikes[key]
