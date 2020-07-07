@@ -3,6 +3,7 @@ const supertest = require('supertest')
 const app = require('../app')
 const api = supertest(app)
 const helper = require('./test_helper')
+const blog = require('../models/blog')
 
 test('all blogs are returned as json', async () => {
   await api
@@ -75,6 +76,42 @@ describe('addition of a new blog', () => {
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd.length).toBe(helper.initialBlogs.length)
+  })
+})
+
+describe('deletion of a blog', () => {
+  test('succeeds with status code 204 if id is valid', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToDelete = blogsAtStart[0]
+    await api
+      .delete(`/api/blogs/${blogToDelete.id}`)
+      .expect(204)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    console.log('endblogs', blogsAtEnd)
+    expect(blogsAtEnd.length).toBe(helper.initialBlogs.length - 1)
+  })
+})
+
+describe('updating a blog', () => {
+  test('succeeds with status code 202 if id is valid', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToUpdate = blogsAtStart[0]
+    const newBlog = {
+      likes: 0,
+      title: 'title updated',
+      author: 'author updated',
+      url: 'url updated',
+    }
+    
+    await api
+      .put(`/api/blogs/${blogToUpdate.id}`)
+      .send(newBlog)
+      .expect(202)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    const titles = blogsAtEnd.map(blogs => blogs.title)
+    expect(titles).toContain('title updated') 
   })
 })
 
