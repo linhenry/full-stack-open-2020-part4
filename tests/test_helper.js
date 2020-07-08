@@ -1,4 +1,5 @@
 const Blog = require('../models/blog')
+const User = require('../models/user')
 
 const initialBlogs = [
   { 
@@ -29,20 +30,16 @@ const initialBlogs = [
 
 const blogsInDb = async () => {
   const blogs = await Blog.find({})
-  return blogs.map(note => note.toJSON())
+  return blogs.map(blog => blog.toJSON())
 }
 
-beforeEach(async() => {
-  await Blog.deleteMany({})
-
-  const blogObjects = initialBlogs
-    .map(blog => new Blog(blog))
-
-  const promiseArray = blogObjects.map(blog => blog.save())
-  await Promise.all(promiseArray)
-})
+const usersInDb = async () => {
+  const users = await User.find({})
+  return users.map(user => user.toJSON())
+}
 
 module.exports = {
   initialBlogs,
-  blogsInDb
+  blogsInDb,
+  usersInDb
 }
