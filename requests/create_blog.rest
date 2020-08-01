@@ -5,5 +5,6 @@ Content-Type: application/json
   "title": "Hello World Blog",
   "author": "Henry Lin",
   "url": "helloworldblog.com",
-  "likes": "15"
+  "likes": "15",
+  "userId": "5f1617523269ae0194135fd3"
 }
